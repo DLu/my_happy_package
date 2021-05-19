@@ -34,7 +34,19 @@ ament_target_dependencies(
   "rclcpp_components"
 )
 
-install(TARGETS my_happy_server
+add_executable(my_happy_client src/my_happy_client.cpp)
+target_include_directories(my_happy_client PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(
+  my_happy_client
+  "control_msgs"
+  "trajectory_msgs"
+  "rclcpp_action"
+  "rclcpp_components"
+)
+
+install(TARGETS my_happy_server my_happy_client
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
