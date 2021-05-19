@@ -33,7 +33,7 @@ private:
     const rclcpp_action::GoalUUID & uuid,
     std::shared_ptr<const FollowJointTrajectory::Goal> goal)
   {
-    RCLCPP_INFO(this->get_logger(), "Received goal request with %d joints", goal->trajectory.joint_names.size());
+    RCLCPP_INFO(this->get_logger(), "Received goal request with %zu joints", goal->trajectory.joint_names.size());
     (void)uuid;
     return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
   }

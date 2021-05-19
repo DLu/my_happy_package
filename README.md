@@ -1,6 +1,6 @@
 # My "Happy" Package
 
-# Intended Behavior
+## Intended Behavior
 
 Run the client and server separately.
 
@@ -20,12 +20,15 @@ And on the client side
     [INFO] [1621451428.566249347] [trajectory_action_client]: Goal accepted by server, waiting for result
     [INFO] [1621451428.567517278] [trajectory_action_client]:
 
-# Actual Behavior
-If you run the server and client on separate machines, you get the following error on the server side
+## Actual Behavior
+If you run the server and client on separate machines, both using Foxy, you get the following error on the server side
 
     [INFO] [1621451548.255623249] [trajectory_action_server]: Server Ready
     terminate called after throwing an instance of 'eprosima::fastcdr::exception::NotEnoughMemoryException'
     what():  Not enough memory in the buffer stream
 
-
 The client does not report the goal being accepted.
+
+
+## Side Note
+The same exact code works as intended on rolling
