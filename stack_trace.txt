@@ -1,0 +1,72 @@
+! hello2_ws/ > ros2 run --prefix 'gdb -ex run --args' my_happy_package my_happy_server 
+GNU gdb (Ubuntu 9.2-0ubuntu1~20.04) 9.2
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from /home/dlu/hello2_ws/install/my_happy_package/lib/my_happy_package/my_happy_server...
+(No debugging symbols found in /home/dlu/hello2_ws/install/my_happy_package/lib/my_happy_package/my_happy_server)
+Starting program: /home/dlu/hello2_ws/install/my_happy_package/lib/my_happy_package/my_happy_server 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff69ad700 (LWP 277482)]
+[New Thread 0x7ffff6123700 (LWP 277483)]
+[New Thread 0x7ffff5922700 (LWP 277484)]
+[New Thread 0x7ffff5121700 (LWP 277485)]
+[New Thread 0x7ffff4920700 (LWP 277486)]
+[New Thread 0x7ffff411f700 (LWP 277487)]
+[New Thread 0x7ffff391e700 (LWP 277488)]
+[New Thread 0x7ffff311d700 (LWP 277489)]
+[New Thread 0x7ffff281c700 (LWP 277490)]
+[New Thread 0x7ffff201b700 (LWP 277491)]
+[INFO] [1621518246.628534092] [trajectory_action_server]: Server Ready
+terminate called after throwing an instance of 'eprosima::fastcdr::exception::NotEnoughMemoryException'
+  what():  Not enough memory in the buffer stream
+
+Thread 1 "my_happy_server" received signal SIGABRT, Aborted.
+__GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+(gdb) bt
+#0  __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50
+#1  0x00007ffff798c859 in __GI_abort () at abort.c:79
+#2  0x00007ffff7c12951 in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#3  0x00007ffff7c1e47c in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#4  0x00007ffff7c1e4e7 in std::terminate() () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#5  0x00007ffff7c1e799 in __cxa_throw () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#6  0x00007ffff7d993ac in ?? () from /opt/ros/foxy/lib/libfastcdr.so.1
+#7  0x00007ffff17804a5 in trajectory_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(eprosima::fastcdr::Cdr&, trajectory_msgs::msg::MultiDOFJointTrajectory_<std::allocator<void> >&) ()
+   from /opt/ros/foxy/lib/libtrajectory_msgs__rosidl_typesupport_fastrtps_cpp.so
+#8  0x00007ffff17d657e in control_msgs::action::typesupport_fastrtps_cpp::cdr_deserialize(eprosima::fastcdr::Cdr&, control_msgs::action::FollowJointTrajectory_Goal_<std::allocator<void> >&)
+    ()
+   from /home/dlu/hello2_ws/install/control_msgs/lib/libcontrol_msgs__rosidl_typesupport_fastrtps_cpp.so
+#9  0x00007ffff17d69e1 in control_msgs::action::typesupport_fastrtps_cpp::cdr_deserialize(eprosima::fastcdr::Cdr&, control_msgs::action::FollowJointTrajectory_SendGoal_Request_<std::allocator<void> >&) ()
+   from /home/dlu/hello2_ws/install/control_msgs/lib/libcontrol_msgs__rosidl_typesupport_fastrtps_cpp.so
+#10 0x00007ffff7649ee3 in ?? () from /opt/ros/foxy/lib/librmw_fastrtps_cpp.so
+#11 0x00007ffff75ff469 in rmw_fastrtps_shared_cpp::__rmw_take_request(char const*, rmw_service_t const*, rmw_service_info_t*, void*, bool*) ()
+   from /opt/ros/foxy/lib/librmw_fastrtps_shared_cpp.so
+#12 0x00007ffff793a81f in rcl_take_request_with_info () from /opt/ros/foxy/lib/librcl.so
+#13 0x00007ffff793ab86 in rcl_take_request () from /opt/ros/foxy/lib/librcl.so
+#14 0x00007ffff7f8753b in rcl_action_take_goal_request ()
+   from /opt/ros/foxy/lib/librcl_action.so
+#15 0x00007ffff7fa6757 in rclcpp_action::ServerBase::execute_goal_request_received() ()
+   from /opt/ros/foxy/lib/librclcpp_action.so
+#16 0x00007ffff7e8923f in rclcpp::Executor::execute_any_executable(rclcpp::AnyExecutable&) ()
+   from /opt/ros/foxy/lib/librclcpp.so
+#17 0x00007ffff7e8da4c in rclcpp::executors::SingleThreadedExecutor::spin() ()
+   from /opt/ros/foxy/lib/librclcpp.so
+#18 0x00007ffff7e8b4e8 in rclcpp::spin(std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface>) () from /opt/ros/foxy/lib/librclcpp.so
+#19 0x00007ffff7e8b790 in rclcpp::spin(std::shared_ptr<rclcpp::Node>) ()
+   from /opt/ros/foxy/lib/librclcpp.so
+#20 0x0000555555558c6b in main ()
+(gdb) 
+
